@@ -27,7 +27,7 @@ const BRANDS = [
   { name: 'Extron', src: '/images/extron.png' },
   { name: 'Dante', src: '/images/dante.png' },
   { name: 'Shure', src: '/images/shure.png' },
-  { name: 'Netgear', src: '/images/netgear-light.png', noInvert: true },
+  { name: 'Netgear-AV', src: '/images/netgear-light.png', noInvert: true },
 ];
 
 export default function Brands() {
