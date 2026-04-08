@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sips -z 32 32 public/images/logo-square.png --out public/favicon-32x32.png)",
+      "Bash(sips -z 16 16 public/images/logo-square.png --out public/favicon-16x16.png)",
+      "Bash(sips -z 180 180 public/images/logo-square.png --out public/apple-touch-icon.png)",
+      "Bash(npm run:*)"
+    ]
+  }
+}
