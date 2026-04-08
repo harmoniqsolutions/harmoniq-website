@@ -103,6 +103,14 @@ function emailShell({ headerLabel, headerTitle, bodyHtml }) {
         <tr>
           <td style="background:linear-gradient(135deg,#1a2340 0%,#0f1629 100%);
                      padding:32px 36px;border-bottom:1px solid rgba(59,130,246,0.2)">
+            <!-- Horizontal logo — transparent PNG renders correctly over the dark header -->
+            <img
+              src="https://harmoniqsolutions.com/images/logo-horizontal.png"
+              alt="HarmoniQ Solutions"
+              width="160"
+              height="27"
+              style="display:block;width:160px;height:auto;margin-bottom:20px"
+            />
             <p style="margin:0;font-size:11px;font-weight:600;text-transform:uppercase;
                       letter-spacing:0.15em;color:#3b82f6">${headerLabel}</p>
             <h1 style="margin:8px 0 0;font-size:22px;font-weight:700;color:#ffffff">
