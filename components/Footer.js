@@ -147,6 +147,21 @@ export default function Footer() {
           <p className="text-xs text-gray-500">
             &copy; {year} HarmoniQ Solutions. All rights reserved.
           </p>
+
+          {/* AVIXA membership badge */}
+          <div className="flex flex-col items-center gap-1.5 opacity-60 hover:opacity-90 transition-opacity duration-200">
+            <Image
+              src="/images/avixa.png"
+              alt="AVIXA Member"
+              width={100}
+              height={50}
+              className="h-10 w-auto object-contain"
+            />
+            <span className="text-xs text-gray-400 tracking-widest uppercase font-medium">
+              AVIXA Member
+            </span>
+          </div>
+
           <p className="text-xs text-gray-600">
             Professional AV Integration Services
           </p>
