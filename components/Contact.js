@@ -4,9 +4,8 @@
 // Left column  — heading, subtext, contact details (email + phone)
 // Right column — glass-card form (Name, Email, Phone, Company, Message)
 //
-// Form handling: client-side only (v1). On submit, shows a success
-// message. To connect to a backend, replace the handleSubmit body
-// with an API call to /api/contact or a third-party form service.
+// Form handling: POSTs to /api/contact which sends email via Resend.
+// Requires RESEND_API_KEY environment variable (see .env.example).
 // =============================================================
 
 "use client";
@@ -61,21 +60,38 @@ export default function Contact() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [loading,   setLoading]   = useState(false);
+  const [error,     setError]     = useState("");
 
   // ---- Input change handler ----
   const handleChange = (e) =>
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 
-  // ---- Form submission ----
-  // ⚑ API INTEGRATION POINT: replace the setTimeout below with a fetch()
-  // to a Next.js API route at /api/contact or a third-party endpoint.
+  // ---- Form submission — POSTs to /api/contact (Resend) ----
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    // Simulate async submission (remove in production)
-    await new Promise((resolve) => setTimeout(resolve, 800));
-    setLoading(false);
-    setSubmitted(true);
+    setError("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method:  "POST",
+        headers: { "Content-Type": "application/json" },
+        body:    JSON.stringify(form),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        // Surface the server's error message if available
+        throw new Error(data.error || "Something went wrong. Please try again.");
+      }
+
+      setSubmitted(true);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -284,6 +300,14 @@ export default function Contact() {
                         className={`${INPUT_CLASS} resize-none`}
                       />
                     </div>
+
+                    {/* Error message */}
+                    {error && (
+                      <p className="text-sm text-red-400 bg-red-400/10 border border-red-400/20
+                                    rounded-lg px-4 py-3">
+                        {error}
+                      </p>
+                    )}
 
                     {/* Submit */}
                     <motion.button
