@@ -1,11 +1,6 @@
-// =============================================================
-// Root Layout — app/layout.js
-// Loads the Inter font, sets global metadata, and wraps all pages.
-// Navbar and Footer are assembled in page.js (single-page site).
-// =============================================================
-
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { SITE } from "@/lib/site";
 
 // Load Inter with a CSS variable so Tailwind's --font-sans can reference it
 const inter = Inter({
@@ -14,28 +9,25 @@ const inter = Inter({
   display: "swap",
 });
 
-// ---------------------------------------------------------------------------
-// Site-wide metadata (OpenGraph, icons, SEO)
-// ---------------------------------------------------------------------------
 export const metadata = {
-  metadataBase: new URL("https://harmoniqsolutions.com"),
-  title: "HarmoniQ Solutions | Professional AV Integration",
-  description:
-    "HarmoniQ Solutions delivers expert audio-visual integration services — " +
-    "designing and installing audio, video, and control systems for commercial environments.",
+  metadataBase: new URL(SITE.url),
+  title: SITE.title,
+  description: SITE.description,
   keywords: [
     "AV integration",
     "audiovisual",
-    "conference room AV",
+    "IT installation",
+    "Wi-Fi installation",
+    "security camera installation",
+    "residential AV",
+    "church sound systems",
     "sound systems",
-    "video walls",
-    "control systems",
     "HarmoniQ Solutions",
   ],
   openGraph: {
-    title: "HarmoniQ Solutions | Professional AV Integration",
+    title: SITE.title,
     description:
-      "Expert AV integration services for corporate, hospitality, education, and more.",
+      "Audio, video, IT, and security installations for homes, churches, and small businesses. A small team with hands-on care for your project.",
     siteName: "HarmoniQ Solutions",
     images: [
       {
@@ -48,23 +40,17 @@ export const metadata = {
     type: "website",
   },
   icons: {
-    apple: "/favicon-96x96.png",
+    apple: "/apple-touch-icon.png",
     icon: [
       { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
     ],
   },
+  alternates: { canonical: "/" },
 };
 
-// ---------------------------------------------------------------------------
-// Root layout component
-// ---------------------------------------------------------------------------
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={inter.variable}>
-      {/*
-        font-sans pulls from --font-sans → var(--font-inter) defined in @theme.
-        The antialiased class is set per-element in globals.css body rule.
-      */}
       <body>{children}</body>
     </html>
   );

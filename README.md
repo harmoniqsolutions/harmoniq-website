@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# HarmoniQ Solutions website
 
-## Getting Started
+A single-page website for our small AV, IT, and security installation team, built with Next.js 16 App Router, React 19, and Tailwind CSS 4.
 
-First, run the development server:
+## Develop and verify
 
-```bash
+Use a supported Node.js LTS release (22.13+ or 24+) and npm:
+
+```sh
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run lint
+npm test
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000. `npm run start` serves the production build. The build downloads Inter through `next/font/google`, then serves the font locally.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `app/page.js` composes server-rendered sections; only navigation and the contact form need client JavaScript.
+- `components/` contains the presentation sections, including `Process.js` and the shared `Icon.js`.
+- `lib/site.js` is the source for public contact details, navigation, project types, and site metadata.
+- `app/api/contact/route.js` validates inquiries and sends them through Resend. A successful response means the team notification was accepted; a courtesy confirmation runs afterward with Next.js `after()`.
+- `app/robots.js` and `app/sitemap.js` generate crawler metadata.
+- `tests/contact.test.mjs` tests validation and delivery behavior with mocked mail providers. Tests never send email.
+- `docs/website-upgrade.md` records the Intent audit, positioning, design decisions, and verification.
 
-## Learn More
+## Contact email configuration
 
-To learn more about Next.js, take a look at the following resources:
+Set `RESEND_API_KEY` in `.env.local` for local delivery and in the Vercel project’s environment for production. The sender `noreply@info.harmoniqsolutions.com` requires that sending domain to be verified in Resend. Keep credentials out of Git. The inquiry recipient comes from `SITE.email` in `lib/site.js`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Without a configured key the form returns a helpful delivery failure; it never pretends the message was sent. Phone and email links remain available.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Logo assets
 
-## Deploy on Vercel
+Manufacturer images live in `public/images/`. The square HarmoniQ mark in the hero comes from `public/images/logo-square.png`; replace that file to change the mark. A 1000 × 1000 transparent PNG works well. Keep the filename and square aspect ratio. The navigation/footer use `logo-horizontal.png` separately.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deploy
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Push to `main` on the existing GitHub remote. The connected Vercel project should build and deploy the commit. Verify the GitHub deployment status and https://www.harmoniqsolutions.com after pushing; a successful Git push alone does not prove deployment succeeded.
