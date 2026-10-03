@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Icon from "@/components/Icon";
+import SignalSculpture from "@/components/SignalSculpture";
 
 const CONNECTIONS = [
   { id: "audio", title: "Audio & video", detail: "Sound that carries. Pictures that connect.", path: "M280 235V112H428", node: "node-av" },
@@ -60,6 +61,7 @@ export default function ConnectionVisual() {
   return (
     <div ref={root} className="connection-explorer" data-selected={selected} data-paused={paused} data-visible="true">
       <div className="connection-stage" onPointerMove={move} onPointerLeave={reset}>
+        <SignalSculpture selected={selected} paused={paused} />
         <div className="connection-depth">
           <svg className="circuit-lines" viewBox="0 0 560 500" fill="none" aria-hidden="true">
             <circle className="orbit-boundary" cx="280" cy="235" r="198" />

@@ -31,3 +31,11 @@ Reviewed the production build in a local Chromium browser with desktop and mobil
 The hook flagged the service bars’ height transition and the hero signal paths’ SVG stroke-width transition. Service bars now keep a fixed layout height and use `scaleY()` to preserve the same visible lengths during hover/focus changes. The SVG stroke-width effect is intentional and changes drawing rather than CSS box layout.
 
 A `layout-transition` exception scoped to `app/globals.css` is recorded in `.impeccable/config.json` for the SVG false positive. This is the hook’s available file-scoped suppression, so future transitions in this stylesheet still need manual review for layout properties. The production build and diff checks passed after the correction.
+
+## Holographic signal sculpture
+
+The hero now includes a rotating, projected 3D mesh with woven cyan/gold signal ribbons and moving terminals. Pointer movement changes the viewing angle. Service selection changes the ribbon wavelength and color, with a brief expansion when motion is enabled. This is decorative geometry rather than live operational data.
+
+`components/SignalSculpture.js` uses Canvas 2D without new dependencies. It shares the existing pause control, renders static artwork for reduced-motion preferences, and stops its animation loop offscreen and in hidden tabs. Rendering resolution is capped at 1.5× device pixel ratio; small canvases use fewer mesh lines, ribbon samples, and terminals, with a 30fps target. The SVG diagram and service controls remain usable when Canvas 2D is unavailable.
+
+Production-browser verification covers animated pixels, frozen pause state, changed service artwork, offscreen suspension, static reduced-motion artwork, bounded mobile resolution, and the canvas-unavailable fallback. Desktop/mobile accessibility scans report zero violations in the tested states, with no observed JavaScript runtime errors. Responsive checks cover 320, 390, 768, 1024, and 1440px. A local Chromium check with 4× CPU throttling exercises the mobile scene; this is simulated performance testing rather than a claim about every physical device.

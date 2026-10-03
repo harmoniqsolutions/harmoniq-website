@@ -102,11 +102,12 @@
 .connection-explorer { --signal-accent: var(--cyan); position: relative; width: 100%; max-width: 560px; justify-self: end; }
 .connection-explorer[data-selected="security"] { --signal-accent: var(--gold); }
 .connection-stage { position: relative; width: 100%; aspect-ratio: 560 / 500; perspective: 850px; }
+.signal-sculpture { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: .9; }
 .connection-depth { position: absolute; inset: 0; transform: rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg)); transition: transform .7s var(--ease-out); }
 .circuit-lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
 .orbit-boundary { stroke: #66e8ed16; stroke-width: 1; }
 .orbit-ticks { stroke: #66e8ed52; stroke-width: 5; stroke-dasharray: 1 15; }
-.orbit-inner { stroke: #66e8ed2b; stroke-width: 1; stroke-dasharray: 4 7; }
+.orbit-inner { stroke: #66e8ed15; stroke-width: 1; stroke-dasharray: 4 7; }
 .orbit-sweep { stroke: var(--signal-accent); stroke-width: 1.5; stroke-dasharray: 160 895; transform-origin: 280px 235px; opacity: .65; }
 .circuit-detail { stroke: #66e8ed24; stroke-width: 1; }
 .signal-channel { color: var(--cyan); }
@@ -118,12 +119,12 @@
 .circuit-terminals { fill: var(--signal-accent); }
 .circuit-crosses { stroke: #b5d7d865; stroke-width: 1; }
 .connection-core { position: absolute; left: 50%; top: 47%; transform: translate(-50%, -50%); width: 160px; height: 160px; display: flex; align-items: center; justify-content: center; }
-.connection-core::before { content: ""; position: absolute; inset: -22px; border-radius: 50%; background: radial-gradient(circle, #66e8ed15, transparent 70%); pointer-events: none; }
+.connection-core::before { content: ""; position: absolute; inset: -22px; border-radius: 50%; background: radial-gradient(circle, #111e27 25%, #111e27cc 55%, transparent 70%); pointer-events: none; }
 .core-ring { position: absolute; inset: -8px; border-radius: 50%; border: 1px solid #66e8ed55; }
 .core-ring::before, .core-ring::after { content: ""; position: absolute; width: 5px; height: 5px; border-radius: 50%; top: 50%; background: var(--signal-accent); }
 .core-ring::before { left: -3px; }
 .core-ring::after { right: -3px; }
-.core-logo { display: block; width: 150px; height: 150px; object-fit: contain; border-radius: 50%; }
+.core-logo { position: relative; z-index: 1; display: block; width: 150px; height: 150px; object-fit: contain; border-radius: 50%; }
 .connection-node { position: absolute; z-index: 2; display: flex; align-items: center; gap: 10px; min-height: 52px; padding: 13px 16px; background: #111e27; border: 1px solid #66859470; border-radius: 12px; color: #d6e6ed; transition: border-color .3s, background .3s, transform .3s var(--ease-out); }
 .connection-node svg { color: var(--cyan); width: 22px; height: 22px; flex-shrink: 0; }
 .connection-node > span:not(.node-indicator) { font-size: 12px; font-weight: 550; white-space: nowrap; }

@@ -21,6 +21,7 @@ Open http://localhost:3000. `npm run start` serves the production build. The bui
 - `app/page.js` composes server-rendered sections. Navigation, the contact form, the service explorer, and local pointer effects use small client components.
 - `components/` contains the presentation sections, including `Process.js` and the shared `Icon.js`.
 - `components/ConnectionVisual.js` provides the interactive hero diagram, service selection, pause/resume, and reduced-motion handling. `components/SurfaceEffects.js` provides local pointer illumination.
+- `components/SignalSculpture.js` draws the hero’s rotating 3D signal mesh and luminous orbital ribbons with Canvas 2D. It shares the service selection and pause control, stops offscreen or in hidden tabs, and renders static artwork for reduced motion.
 - `lib/site.js` is the source for public contact details, navigation, project types, and site metadata.
 - `app/api/contact/route.js` validates inquiries and sends them through Resend. A successful response means the team notification was accepted; a courtesy confirmation runs afterward with Next.js `after()`.
 - `app/robots.js` and `app/sitemap.js` generate crawler metadata.
