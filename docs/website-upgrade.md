@@ -83,13 +83,13 @@ Protect these strengths: a single-page structure, stable section anchors, clear 
 - [x] Failure preserves the inquiry and exposes phone/email recovery; success receives focus.
 - [x] Metadata, canonical URL, robots, sitemap, and share preview reflect the new scope.
 - [x] Lint/build and focused interaction/server checks pass; test scope and limitations are recorded.
-- [ ] Upgrade files are committed and pushed; production status is recorded separately.
+- [x] Upgrade commit `293f441` was pushed to `main`; Vercel reported a successful Production deployment and the live site was verified.
 
 ## Technical and verification context
 
 Baseline stack: Next 16.2.2, React 19.2.4, Tailwind 4, Framer Motion 12.38, Resend 6.10. The baseline provided `dev`, `build`, `start`, and `lint` scripts, with no test suite. The upgrade adds a persistent `npm test` suite for the inquiry endpoint and removes the unused Framer Motion dependency. Browser checks use temporary tooling rather than adding a browser-test dependency to the production project.
 
-Existing remote: `https://github.com/harmoniqsolutions/harmoniq-website.git`. The baseline metadata used `https://harmoniqsolutions.com`; a live check observed that apex returning a 307 redirect to `https://www.harmoniqsolutions.com`, which is now the shared canonical site URL. No project-local `.vercel` connection file, `vercel.json`, or GitHub deployment workflow was present in the baseline. The implementation lead independently confirmed the existing hosting connection through live Vercel response headers and GitHub Production deployment `4301677474`, associated with baseline commit prefix `eadaeee`. That evidence confirms the existing connection, not deployment of the unpushed upgrade.
+Existing remote: `https://github.com/harmoniqsolutions/harmoniq-website.git`. The baseline metadata used `https://harmoniqsolutions.com`; a live check observed that apex returning a 307 redirect to `https://www.harmoniqsolutions.com`, which is now the shared canonical site URL. No project-local `.vercel` connection file, `vercel.json`, or GitHub deployment workflow was present in the baseline. The implementation lead independently confirmed the existing hosting connection through live Vercel response headers and GitHub Production deployment `4301677474`, associated with baseline commit prefix `eadaeee`. That baseline evidence established the connection before publishing; the upgrade release is independently verified below.
 
 Documentation consulted: `.agents/skills/intent/SKILL.md`, `.agents/skills/evaluate/SKILL.md`, Intent accessibility foundations, and installed Next documentation for accessibility and metadata/OG conventions. Existing untracked skill directories are unrelated owner workspace content and must not be included in the website commit.
 
@@ -131,7 +131,7 @@ The old animation helper and Framer Motion dependency were removed. The process 
 
 - Finish the final rendered review after restoring real manufacturer images and the square company hero logo, then run checks appropriate to any resulting changes.
 - Commit and push only the website upgrade files, preserving unrelated owner skill files.
-- Record the pushed upgrade commit and independently confirm its Vercel deployment and live page content. Existing baseline hosting evidence does not mark this step complete.
+- Upgrade deployment verified: commit `293f441`, Production deployment `6822660269`, Vercel success status, and live content checks (see release record below).
 
 ### Final logo verification
 
@@ -139,4 +139,16 @@ The original manufacturer image assets are restored, with official UniFi SVG and
 
 The restored image grid initially revealed a 320px overflow caused by grid minimum content widths. Explicit zero-minimum grid tracks and shrinkable logo containers corrected it. The production build and rendered browser checks were repeated afterward: 320, 375, 390, 768, 1024, and 1440px viewports have no horizontal overflow; all logos load; desktop/mobile axe checks report zero violations for the tested WCAG A/AA tags; menu and mocked contact states pass; no page errors occur.
 
-Deployment is the remaining operational step. The repository's existing Production deployment records and public Vercel headers confirm the integration.
+Deployment and live checks completed; see the release record below.
+
+### Production release record
+
+- Website upgrade commit: `293f441280f803a287759910e0d4df794c1e83b5`, pushed to existing `origin/main`.
+- Vercel commit status: **success**, “Deployment has completed.”
+- GitHub Production deployment: `6822660269`, created `2026-10-03T03:22:01Z`, matching the upgrade commit.
+- [Live website](https://www.harmoniqsolutions.com): verified the new headline, AV/IT/security metadata, and UniFi/RUCKUS image references.
+- Live robots and sitemap return the canonical `www` URL; malformed contact data returns controlled HTTP 400 before mail-provider work.
+- Lint, production build, 14 contact tests, responsive checks, menu/skip-link interactions, and automated desktop/mobile accessibility checks pass. Manufacturer images are loaded and original colors preserved.
+- Live valid-email delivery was not exercised; acceptance/failure and deferred-confirmation paths were tested with mocks. Automated accessibility checks do not constitute accessibility certification.
+
+This record describes the verified website release. The subsequent documentation-only commit records these outcomes without changing the website implementation.
