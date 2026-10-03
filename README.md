@@ -18,13 +18,16 @@ Open http://localhost:3000. `npm run start` serves the production build. The bui
 
 ## Structure
 
-- `app/page.js` composes server-rendered sections; only navigation and the contact form need client JavaScript.
+- `app/page.js` composes server-rendered sections. Navigation, the contact form, the service explorer, and local pointer effects use small client components.
 - `components/` contains the presentation sections, including `Process.js` and the shared `Icon.js`.
+- `components/ConnectionVisual.js` provides the interactive hero diagram, service selection, pause/resume, and reduced-motion handling. `components/SurfaceEffects.js` provides local pointer illumination.
 - `lib/site.js` is the source for public contact details, navigation, project types, and site metadata.
 - `app/api/contact/route.js` validates inquiries and sends them through Resend. A successful response means the team notification was accepted; a courtesy confirmation runs afterward with Next.js `after()`.
 - `app/robots.js` and `app/sitemap.js` generate crawler metadata.
 - `tests/contact.test.mjs` tests validation and delivery behavior with mocked mail providers. Tests never send email.
 - `docs/website-upgrade.md` records the Intent audit, positioning, design decisions, and verification.
+- `docs/design-polish.md` records the futuristic polish, interaction behavior, verification, and animation-hook review.
+- `PRODUCT.md` records confirmed product facts, service area, claim boundaries, and open decisions. `.impeccable/config.json` stores the code-first design workflow and scoped detector exceptions; `.impeccable/live/config.json` identifies the app entry for optional live editing.
 
 ## Contact email configuration
 

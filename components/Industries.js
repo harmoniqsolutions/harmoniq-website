@@ -30,18 +30,16 @@ export default function Industries() {
     <section id="industries" aria-labelledby="industries-title" className="industries-section section-padding">
       <div className="section-container">
         <div className="industries-heading">
-          <p className="eyebrow">Where we work</p>
           <h2 id="industries-title" className="section-heading">Built for the places<br />you use every day.</h2>
           <p className="section-intro">Homes, local businesses and the spaces that bring people together. Small projects are welcome.</p>
         </div>
         <div className="industries-grid">
-          {INDUSTRIES.map(({ title, description, examples, path }, index) => (
+          {INDUSTRIES.map(({ title, description, examples, path }) => (
             <article key={title} className="industry-card glass-card">
               <div className="industry-topline">
                 <svg className="industry-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
                   <path d={path} />
                 </svg>
-                <span className="industry-index" aria-hidden="true">0{index + 1}</span>
               </div>
               <h3>{title}</h3>
               <p>{description}</p>

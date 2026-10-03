@@ -1,3 +1,5 @@
+import Icon from "@/components/Icon";
+
 const STATS = [
   { value: '10+', label: 'Projects completed' },
   { value: '5+', label: 'Years of hands-on experience' },
@@ -5,9 +7,9 @@ const STATS = [
 ];
 
 const PRINCIPLES = [
-  { number: '01', title: 'Audio & video', detail: 'Sound, screens and the connections between them.' },
-  { number: '02', title: 'Networks & IT', detail: 'Wi-Fi, cabling and the equipment that keeps you connected.' },
-  { number: '03', title: 'Security', detail: 'Cameras and security systems for your space.' },
+  { icon: 'audio', title: 'Audio & video', detail: 'Sound, screens and the connections between them.' },
+  { icon: 'network', title: 'Networks & IT', detail: 'Wi-Fi, cabling and the equipment that keeps you connected.' },
+  { icon: 'security', title: 'Security', detail: 'Cameras and security systems for your space.' },
 ];
 
 export default function About() {
@@ -15,7 +17,6 @@ export default function About() {
     <section id="about" aria-labelledby="about-title" className="about-section section-padding">
       <div className="section-container about-layout">
         <div className="about-copy">
-          <p className="eyebrow">The people behind the install</p>
           <h2 id="about-title" className="section-heading">
             Small team.<br />Big attention to detail.
           </h2>
@@ -40,14 +41,13 @@ export default function About() {
         </div>
 
         <div className="about-panel glass-card">
-          <p className="panel-label"><span aria-hidden="true" /> One team. Connected systems.</p>
+          <div className="panel-circuit" aria-hidden="true"><svg viewBox="0 0 400 110" fill="none"><path d="M0 90H80L130 40H265L310 85H400M0 100H85L135 50H260L305 95H400" /><circle cx="130" cy="40" r="4" /><circle cx="265" cy="40" r="4" /></svg></div>
           <h3>A small crew.<br />A connected approach.</h3>
           <ul className="about-principles">
-            {PRINCIPLES.map(({ number, title, detail }) => (
+            {PRINCIPLES.map(({ icon, title, detail }) => (
               <li key={title}>
-                <span className="principle-number" aria-hidden="true">{number}</span>
+                <Icon name={icon} className="principle-icon" />
                 <div><h4>{title}</h4><p>{detail}</p></div>
-                <span className="principle-mark" aria-hidden="true">+</span>
               </li>
             ))}
           </ul>

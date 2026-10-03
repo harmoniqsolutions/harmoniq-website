@@ -1,0 +1,18 @@
+{
+  "buildPath": "code",
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "layout-transition",
+        "value": "*",
+        "files": [
+          "app/globals.css"
+        ],
+        "createdAt": "2026-10-03T04:27:59.339Z",
+        "reason": "Agent reviewed: the remaining finding is SVG stroke-width, which changes paint rather than CSS box layout. The actual service-wave height transition was replaced with scaleY while preserving its appearance."
+      }
+    ]
+  }
+}

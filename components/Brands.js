@@ -18,7 +18,6 @@ export default function Brands() {
       <div className="section-container">
         <div className="brands-heading">
           <div>
-            <p className="eyebrow">The equipment behind the work</p>
             <h2 id="brands-title" className="section-heading">Technology<br />we work with.</h2>
           </div>
           <p className="section-intro">From wireless networks to room audio, we choose equipment around your project, your space and your budget.</p>

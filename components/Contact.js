@@ -2,15 +2,16 @@
 
 import { useEffect, useRef, useState } from "react";
 import { PROJECT_TYPES, SITE } from "@/lib/site";
+import Icon from "@/components/Icon";
 
 const CONTACT_INFO = [
-  { label: "Email us", value: SITE.email, href: `mailto:${SITE.email}`, symbol: "@" },
-  { label: "Call us", value: SITE.phone, href: SITE.phoneHref, symbol: "+" },
+  { label: "Email us", value: SITE.email, href: `mailto:${SITE.email}`, icon: "mail" },
+  { label: "Call us", value: SITE.phone, href: SITE.phoneHref, icon: "phone" },
 ];
 
 const INPUT_CLASS =
   "w-full min-h-12 rounded-xl border border-white/25 bg-[#080b10] px-4 py-3 text-base text-white " +
-  "placeholder:text-slate-500 transition-colors focus:border-[#66e8ed] focus:outline-2 focus:outline-offset-2 focus:outline-[#66e8ed]";
+  "placeholder:text-slate-400 transition-colors focus:border-[#66e8ed] focus:outline-2 focus:outline-offset-2 focus:outline-[#66e8ed]";
 const LABEL_CLASS = "text-sm font-medium text-slate-300";
 const INITIAL_FORM = { name: "", email: "", phone: "", company: "", service: "mixed", message: "" };
 
@@ -69,11 +70,10 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" aria-labelledby="contact-heading" className="relative overflow-hidden bg-[#080b10] section-padding">
+    <section id="contact" aria-labelledby="contact-heading" className="contact-section relative overflow-hidden bg-[#080b10] section-padding">
       <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#66e8ed]/40 to-transparent" />
       <div className="section-container relative">
         <div className="mb-12 max-w-2xl">
-          <p className="eyebrow mb-4 text-[#66e8ed]">Let&apos;s talk</p>
           <h2 id="contact-heading" className="mb-5 text-4xl font-semibold tracking-tight text-white md:text-5xl">
             A small project can make a <span className="text-[#66e8ed]">big difference.</span>
           </h2>
@@ -94,9 +94,9 @@ export default function Contact() {
               </p>
             </div>
             <div className="space-y-4">
-              {CONTACT_INFO.map(({ label, value, href, symbol }) => (
+              {CONTACT_INFO.map(({ label, value, href, icon }) => (
                 <a key={label} href={href} className="group flex min-h-16 items-center gap-4 rounded-xl p-1 text-white transition-colors hover:text-[#66e8ed] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#66e8ed]">
-                  <span aria-hidden="true" className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[#66e8ed]/25 bg-[#66e8ed]/5 font-mono text-xl text-[#66e8ed]">{symbol}</span>
+                  <span aria-hidden="true" className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[#66e8ed]/25 bg-[#66e8ed]/5 text-[#66e8ed]"><Icon name={icon} /></span>
                   <span className="min-w-0">
                     <span className="mb-1 block text-xs uppercase tracking-widest text-slate-400">{label}</span>
                     <span className="block break-all text-sm font-medium sm:text-base">{value}</span>
@@ -104,7 +104,7 @@ export default function Contact() {
                 </a>
               ))}
             </div>
-            <div className="border-l-2 border-[#d8bb7b]/60 pl-5">
+            <div className="contact-callout">
               <p className="mb-2 text-sm font-medium text-[#d8bb7b]">Start with the problem.</p>
               <p className="max-w-sm text-sm leading-relaxed text-slate-400">
                 A dead Wi-Fi spot, a TV that needs mounting, or sound that isn&apos;t reaching the room.
@@ -113,11 +113,11 @@ export default function Contact() {
             </div>
           </div>
 
-          <div className="glass-card relative overflow-hidden p-6 sm:p-8">
+          <div className="contact-panel glass-card relative overflow-hidden p-6 sm:p-8">
             <div aria-hidden="true" className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[#66e8ed] to-transparent" />
             {submitted ? (
               <div className="flex min-h-96 flex-col items-start justify-center gap-5">
-                <span aria-hidden="true" className="flex h-14 w-14 items-center justify-center rounded-full border border-[#66e8ed]/30 bg-[#66e8ed]/10 text-2xl text-[#66e8ed]">✓</span>
+                <span aria-hidden="true" className="flex h-14 w-14 items-center justify-center rounded-full border border-[#66e8ed]/30 bg-[#66e8ed]/10 text-2xl text-[#66e8ed]"><Icon name="check" /></span>
                 <h3 ref={successRef} tabIndex={-1} className="text-2xl font-semibold text-white focus:outline-none">Your message is with our team.</h3>
                 <p className="max-w-md leading-relaxed text-slate-400">Thanks for telling us about your project. We&apos;ll review the details and get in touch using the email you provided.</p>
                 <a href={SITE.phoneHref} className="btn-secondary">Prefer to talk? Call us</a>
@@ -126,7 +126,6 @@ export default function Contact() {
               <form onSubmit={handleSubmit} aria-busy={loading} className="space-y-5">
                 <div className="flex items-center justify-between gap-4 border-b border-white/10 pb-5">
                   <h3 className="text-xl font-semibold text-white">Tell us about your project</h3>
-                  <span aria-hidden="true" className="font-mono text-xs text-[#66e8ed]">01 / START</span>
                 </div>
                 <p className="text-sm text-slate-400">Name, email, and project details are required.</p>
                 <div className="grid gap-5 sm:grid-cols-2">

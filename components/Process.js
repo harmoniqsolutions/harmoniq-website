@@ -1,3 +1,5 @@
+import Icon from "@/components/Icon";
+
 const STEPS = [
   {
     title: 'Talk it through',
@@ -18,7 +20,6 @@ export default function Process() {
     <section id="why-us" aria-labelledby="process-title" className="process-section section-padding">
       <div className="section-container">
         <div className="process-heading">
-          <p className="eyebrow">How we work</p>
           <h2 id="process-title" className="section-heading">A straightforward process.<br />From first chat to final check.</h2>
           <p className="section-intro">A small team, clear conversations and care for the details. Here is what working with HarmoniQ looks like.</p>
         </div>
@@ -33,7 +34,7 @@ export default function Process() {
         </ol>
         <div className="process-footer">
           <p>A single upgrade or a few systems working together. We can help you work out the next step.</p>
-          <a className="text-link" href="#contact">Tell us about your project <span aria-hidden="true">↗</span></a>
+          <a className="text-link" href="#contact">Tell us about your project <Icon name="arrow" /></a>
         </div>
       </div>
     </section>

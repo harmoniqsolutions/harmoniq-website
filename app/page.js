@@ -7,6 +7,7 @@ import Process from "@/components/Process";
 import Brands from "@/components/Brands";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import SurfaceEffects from "@/components/SurfaceEffects";
 
 export default function Home() {
   return (
@@ -23,6 +24,7 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
+      <SurfaceEffects />
     </>
   );
 }
